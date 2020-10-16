@@ -25,26 +25,9 @@ class Command(BaseCommand):
                 obj.unique_squirrel_id = item['Unique Squirrel ID']
                 obj.shift = PM if item['Shift'] == 'PM' else AM
                 obj.date = date(int(year), int(month), int(day))
-                if item['Age'] == 'Adult':
-                    obj.age = ADULT
-                elif item['Age'] == 'Juvenile':
-                    obj.age = JUVENILE
-                else:
-                    obj.age = UNKNOWN
-                if item['Primary Fur Color'] == 'Gray':
-                    obj. primary_fur_color = GRAY
-                elif item['Primary Fur Color'] == 'Cinnamon':
-                    obj. primary_fur_color = CINNAMON
-                elif item['Primary Fur Color'] == 'Black':
-                    obj. primary_fur_color = BLACK
-                else:
-                    obj. primary_fur_color = UNKNOWN_COLOR
-                if item['Location'] == 'Above Ground':
-                    obj.location = ABOVE_GROUND
-                elif item['Location'] == 'Ground Plane':
-                    obj.location = GROUND_PLANE
-                else:
-                    obj.location = UNKNOWN_LOCATION
+                obj.age = item['Age']
+                obj.primary_fur_color = item['Primary Fur Color']
+                obj.location = item['Location']
                 obj.specific_location = item['Specific Location']
                 obj.running = True if item['Running'] == 'true' else False
                 obj.chasing = True if item['Chasing'] == 'true' else False
