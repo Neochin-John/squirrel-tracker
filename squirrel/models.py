@@ -1,6 +1,5 @@
 from django.db import models
 
-from django.db import models
 from django.utils.translation import gettext as _
 
 class Sighting(models.Model):
@@ -8,7 +7,7 @@ class Sighting(models.Model):
         help_text = _('Latitude of the sighting'),
     )
 
-    longitude = models.FloarField(
+    longitude = models.FloatField(
         help_text = _('Longitude of the sighting'),
     )
 
@@ -41,7 +40,7 @@ class Sighting(models.Model):
     AGE_CHOICES=[
             (ADULT,_('Adult')),
             (JUVENILE,_('Juvenile')),
-            (UNKNOWN,_('Unknown')
+            (UNKNOWN,_('Unknown')),
     ]
 
     age = models.CharField(
@@ -56,9 +55,9 @@ class Sighting(models.Model):
     GRAY='Gray'
 
     PRI_FUR_COLOR_CHOICES=[
-        (BLACK,_('Black'),
-        (CINNAMON,_('Cinnamon'),
-        (GRAY,_('Gray'),
+        (BLACK,_('Black')),
+        (CINNAMON,_('Cinnamon')),
+        (GRAY,_('Gray')),
     ]
 
     primary_fur_color = models.CharField(
@@ -72,8 +71,8 @@ class Sighting(models.Model):
     GROUND_PLANE='Ground Plane'
 
     LOCATION_CHOICES=[
-        (ABOVE_GROUND,_('Above Ground'),
-        (GROUND_PLANE,_('Ground Plance'),
+        (ABOVE_GROUND,_('Above Ground')),
+        (GROUND_PLANE,_('Ground Plance')),
     ]
 
     location = models.CharField(
