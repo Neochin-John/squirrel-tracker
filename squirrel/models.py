@@ -50,8 +50,8 @@ class Sighting(models.Model):
         blank = True,
     )
 
-    BLACK='Black',
-    CINNAMON='Cinnamon',
+    BLACK='Black'
+    CINNAMON='Cinnamon'
     GRAY='Gray'
 
     PRI_FUR_COLOR_CHOICES=[
