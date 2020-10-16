@@ -36,55 +36,51 @@ class Sighting(models.Model):
 
     ADULT='Adult'
     JUVENILE='Juvenile'
-    UNKNOWN_AGE='Unknown'
+    UNKNOWN='?'
 
     AGE_CHOICES=[
             (ADULT,_('Adult')),
             (JUVENILE,_('Juvenile')),
-            (UNKNOWN_AGE,_('')),
+            (UNKNOWN,_('Unknown')),
     ]
 
     age = models.CharField(
         max_length=10,
         help_text = _('Age of squirrel'),
         choices=AGE_CHOICES,
-        default = UNKNOWN_AGE,
+        blank = True,
     )
 
     BLACK='Black'
     CINNAMON='Cinnamon'
     GRAY='Gray'
-    UNKNOWN_COLOR='Unknown'
 
     PRI_FUR_COLOR_CHOICES=[
         (BLACK,_('Black')),
         (CINNAMON,_('Cinnamon')),
         (GRAY,_('Gray')),
-        (UNKNOWN_COLOR,_('')),
     ]
 
     primary_fur_color = models.CharField(
         max_length=10,
         help_text = _('Primary Fur Color'),
         choices=PRI_FUR_COLOR_CHOICES,
-        default = UNKNOWN_COLOR,
+        blank = True,
     )
 
     ABOVE_GROUND='Above Ground'
     GROUND_PLANE='Ground Plane'
-    UNKNOWN_LOCATION='Unknown'
 
     LOCATION_CHOICES=[
         (ABOVE_GROUND,_('Above Ground')),
         (GROUND_PLANE,_('Ground Plance')),
-        (UNKNOWN_LOCATION,_('')),
     ]
 
     location = models.CharField(
         max_length=20,
         help_text = _('Location of squirrel'),
         choices=LOCATION_CHOICES,
-        default = UNKNOWN_LOCATION,
+        blank = True,
     )
 
     specific_location = models.TextField(
