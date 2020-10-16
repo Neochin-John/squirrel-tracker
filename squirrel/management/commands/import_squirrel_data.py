@@ -23,26 +23,43 @@ class Command(BaseCommand):
                 obj.longitude = float(item['X'])
                 obj.latitude = float(item['Y'])
                 obj.unique_squirrel_id = item['Unique Squirrel ID']
-                obj.shift = item['Shift']
+                obj.shift = PM if item['Shift'] == 'PM' else AM
                 obj.date = date(int(year), int(month), int(day))
-                obj.age = item['Age']
-                obj.primary_fur_color = item['Primary Fur Color']
-                obj.location = item['Location']
+                if item['Age'] == 'Adult':
+                    obj.age = ADULT
+                elif item['Age'] == 'Juvenile':
+                    obj.age = JUVENILE
+                else:
+                    obj.age = UNKNOWN
+                if item['Primary Fur Color'] == 'Gray':
+                    obj. primary_fur_color = GRAY
+                elif item['Primary Fur Color'] == 'Cinnamon':
+                    obj. primary_fur_color = CINNAMON
+                elif item['Primary Fur Color'] == 'Black':
+                    obj. primary_fur_color = BLACK
+                else:
+                    obj. primary_fur_color = UNKNOWN_COLOR
+                if item['Location'] == 'Above Ground':
+                    obj.location = ABOVE_GROUND
+                elif item['Location'] == 'Ground Plane':
+                    obj.location = GROUND_PLANE
+                else:
+                    obj.location = UNKNOWN_LOCATION
                 obj.specific_location = item['Specific Location']
-                obj.running = True if item['Running'] == 'TRUE' else False
-                obj.chasing = True if item['Chasing'] == 'TRUE' else False
-                obj.climbing = True if item['Climbing'] == 'TRUE' else False
-                obj.eating = True if item['Eating'] == 'TRUE' else False
-                obj.foraging = True if item['Foraging'] == 'TRUE' else False
+                obj.running = True if item['Running'] == 'true' else False
+                obj.chasing = True if item['Chasing'] == 'true' else False
+                obj.climbing = True if item['Climbing'] == 'true' else False
+                obj.eating = True if item['Eating'] == 'true' else False
+                obj.foraging = True if item['Foraging'] == 'true' else False
                 obj.other_activities = item['Other Activities']
-                obj.kuks = True if item['Kuks'] == 'TRUE' else False
-                obj.quaas = True if item['Quaas'] == 'TRUE' else False
-                obj.moans = True if item['Moans'] == 'TRUE' else False
-                obj.tail_flags = True if item['Tail flags'] == 'TRUE' else False
-                obj.tail_twitches = True if item['Tail twitches'] == 'TRUE' else False
-                obj.approaches = True if item['Approaches'] == 'TRUE' else False
-                obj.indifferent = True if item['Indifferent'] == 'TRUE' else False
-                obj.runs_from = True if item['Runs from'] == 'TRUE' else False
+                obj.kuks = True if item['Kuks'] == 'true' else False
+                obj.quaas = True if item['Quaas'] == 'true' else False
+                obj.moans = True if item['Moans'] == 'true' else False
+                obj.tail_flags = True if item['Tail flags'] == 'true' else False
+                obj.tail_twitches = True if item['Tail twitches'] == 'true' else False
+                obj.approaches = True if item['Approaches'] == 'true' else False
+                obj.indifferent = True if item['Indifferent'] == 'true' else False
+                obj.runs_from = True if item['Runs from'] == 'true' else False
                  
                 obj.save()
                     
