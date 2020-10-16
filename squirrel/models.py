@@ -13,35 +13,73 @@ class Sighting(models.Model):
     )
 
     unique_squirrel_id = models.CharField(
-        help_text = _('Hectare-Shift-Date-Hectare Squirrel Number'),
+        max_length=20,
+        help_text = _('The unique id of squirrel(Format:Hectare-Shift-Date-Hectare Squirrel Number)'),
     )
-
+    
+    AM='AM'
+    PM='PM'
     SHIFT_CHOICES = [
-        ('PM','PM'),
-        ('AM','AM'),
+        (PM,_('PM')),
+        (AM,_('AM')),
     ]
 
     shift = models.CharField(
+        max_length=5,
         help_text = _('Shift'),
         choices = SHIFT_CHOICES,
     )
 
     date= models.DateField(
-        help_text = _('Date'),
+        help_text = _('Format:mmddyyyy'),
     )
+
+    ADULT='Adult'
+    JUVENILE='Juvenile'
+    UNKNOWN='?'
+
+    AGE_CHOICES=[
+            (ADULT,_('Adult')),
+            (JUVENILE,_('Juvenile')),
+            (UNKNOWN,_('Unknown')
+    ]
 
     age = models.CharField(
-        help_text = _('Adult or Juvenile'),
+        max_length=10,
+        help_text = _('Age of squirrel'),
+        choices=AGE_CHOICES,
         blank = True,
     )
+
+    BLACK='Black',
+    CINNAMON='Cinnamon',
+    GRAY='Gray'
+
+    PRI_FUR_COLOR_CHOICES=[
+        (BLACK,_('Black'),
+        (CINNAMON,_('Cinnamon'),
+        (GRAY,_('Gray'),
+    ]
 
     primary_fur_color = models.CharField(
+        max_length=10,
         help_text = _('Primary Fur Color'),
+        choices=PRI_FUR_COLOR_CHOICES,
         blank = True,
     )
 
+    ABOVE_GROUND='Above Ground'
+    GROUND_PLANE='Ground Plane'
+
+    LOCATION_CHOICES=[
+        (ABOVE_GROUND,_('Above Ground'),
+        (GROUND_PLANE,_('Ground Plance'),
+    ]
+
     location = models.CharField(
-        help_text = _('Ground Plane or Above Ground'),
+        max_length=20,
+        help_text = _('Location of squirrel'),
+        choices=LOCATION_CHOICES,
         blank = True,
     )
 
@@ -105,7 +143,7 @@ class Sighting(models.Model):
     )
 
     def __str__(self):
-        return self.squirrel_unique_id
+        return self.unique_squirrel_id
 
 
 
