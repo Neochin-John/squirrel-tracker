@@ -116,6 +116,10 @@ class Sighting(models.Model):
         help_text = _('Whether or not the squirrel kuks'),
     )
 
+    quaas = models.BooleanField(
+        help_text = _('Whether or not the squirrel quaas'),
+    )
+
     moans = models.BooleanField(
         help_text = _('Whether or not the squirrel moans'),
     )
