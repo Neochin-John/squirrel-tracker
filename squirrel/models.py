@@ -1,3 +1,4 @@
+
 from django.db import models
 
 from django.utils.translation import gettext as _
@@ -35,51 +36,55 @@ class Sighting(models.Model):
 
     ADULT='Adult'
     JUVENILE='Juvenile'
-    UNKNOWN='?'
+    UNKNOWN_AGE='Unknown'
 
     AGE_CHOICES=[
             (ADULT,_('Adult')),
             (JUVENILE,_('Juvenile')),
-            (UNKNOWN,_('Unknown')),
+            (UNKNOWN_AGE,_('')),
     ]
 
     age = models.CharField(
         max_length=10,
         help_text = _('Age of squirrel'),
         choices=AGE_CHOICES,
-        blank = True,
+        default = UNKNOWN_AGE,
     )
 
     BLACK='Black'
     CINNAMON='Cinnamon'
     GRAY='Gray'
+    UNKNOWN_COLOR='Unknown'
 
     PRI_FUR_COLOR_CHOICES=[
         (BLACK,_('Black')),
         (CINNAMON,_('Cinnamon')),
         (GRAY,_('Gray')),
+        (UNKNOWN_COLOR,_('')),
     ]
 
     primary_fur_color = models.CharField(
         max_length=10,
         help_text = _('Primary Fur Color'),
         choices=PRI_FUR_COLOR_CHOICES,
-        blank = True,
+        default = UNKNOWN_COLOR,
     )
 
     ABOVE_GROUND='Above Ground'
     GROUND_PLANE='Ground Plane'
+    UNKNOWN_LOCATION='Unknown'
 
     LOCATION_CHOICES=[
         (ABOVE_GROUND,_('Above Ground')),
         (GROUND_PLANE,_('Ground Plance')),
+        (UNKNOWN_LOCATION,_('')),
     ]
 
     location = models.CharField(
         max_length=20,
         help_text = _('Location of squirrel'),
         choices=LOCATION_CHOICES,
-        blank = True,
+        default = UNKNOWN_LOCATION,
     )
 
     specific_location = models.TextField(
@@ -146,7 +151,7 @@ class Sighting(models.Model):
     )
 
     def __str__(self):
-        return self.unique_squirrel_id
+        return self.squirrel_unique_id
 
 
 
