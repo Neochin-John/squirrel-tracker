@@ -17,7 +17,7 @@ class Command(BaseCommand):
 
         with open(path, 'rt') as fp:
             reader = csv.DictReader(fp)
-            id=[]
+            id_list=[]
             for item in reader:
                 if item['Unique Squirrel ID'] in id:
                     continue
@@ -47,7 +47,8 @@ class Command(BaseCommand):
                     obj.approaches = True if item['Approaches'] == 'true' else False
                     obj.indifferent = True if item['Indifferent'] == 'true' else False
                     obj.runs_from = True if item['Runs from'] == 'true' else False
-                 
+                    id_list.append(item['Unique Squirrel ID'])
+
                     obj.save()
                     
                     msg=f'You are importing from {path}'
