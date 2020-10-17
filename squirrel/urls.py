@@ -7,9 +7,8 @@ app_name='squirrel'
 urlpatterns=[
         path('map/',views.map_view),
         path('sightings/',views.list_all_sightings),
-        path('sightings/<unique_squirrel_id>/',views.update_sighting),
         path('sightings/add/',views.create_sighting),
         path('sightings/stats/',views.general_stats),
         
-        path('<unique_squirrel_id>/',views.update_sighting,name='update_sighting'),
+        path('sightings/<unique_squirrel_id>/',views.update_sighting,name='update_sighting'),
 ]
