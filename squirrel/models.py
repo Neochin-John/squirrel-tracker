@@ -147,7 +147,7 @@ class Sighting(models.Model):
     )
 
     def __str__(self):
-        return self.squirrel_unique_id
+        return self.unique_squirrel_id
 
 
 

@@ -8,7 +8,7 @@ from .forms import SightingRequestForm
 
 from django.http import JsonResponse
 
-def map_view(request)
+def map_view(request):
     sighthings = Sightings.objects.all()[:100]
     context={
             'sightings':sightings                            # To be revised
