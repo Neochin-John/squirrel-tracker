@@ -1,11 +1,12 @@
 <!doctype html>
 <html>
 	<body>
+	<a href="{%url 'squirrel:create_sighting' %}">add</a>
+	<br/>
 		<ul>
 			{% for sighting in sightings %}
 			<li>
-				<a href="{%url 'squirrel:update_sighting'sighting.uniq
-ue_squirrel_id %}">{{ sighting.unique_squirrel_id }}</a>
+				<a href="{%url 'squirrel:update_sighting' sighting.unique_squirrel_id %}">{{ sighting.unique_squirrel_id }}</a>
 				{{ sighting.date }}
 			</li>
 			{% endfor %}

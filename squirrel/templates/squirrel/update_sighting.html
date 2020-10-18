@@ -1,11 +1,9 @@
 <!doctype html>
 <html>
 	<body>
-		{{ sighting.latitude }}
-		{{ sighting.longitude }}
-		{{ sighting.unique_squirrel_id }}
-		{{ sighting.shift }}
-		{{ sighting.date }}
-		{{ sighting.age }}
+		<form method="post">{% csrf_token %}
+      	{{ form.as_p }}
+      	<input type="submit" value="Save">
+    	</form>
 	</body>
 </html>
