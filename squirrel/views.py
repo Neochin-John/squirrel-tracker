@@ -11,21 +11,31 @@ from django.http import JsonResponse
 def map_view(request):
     sightings = Sighting.objects.all()[:100]
     context={
-            'sightings':sightings                            # To be revised
+            'sightings':sightings
     }
     return render(request,'squirrel/map.html',context)
 
 def list_all_sightings(request):
     sightings=Sighting.objects.all()
     context={
-            'sightings':sightings                            # To be revised
+            'sightings':sightings
     }
     return render(request,'squirrel/list_all_sightings.html',context)
 
-def update_sighting(request,unique_squirrel_id):             #update the particular sight
-    sighting = get_object_or_404(Squirrels, unique_squirrel_id=squirrel_id)
-    form = Form(request.POST or None, instance=sighting)
-    context = {'form': form}
+def update_sighting(request,unique_squirrel_id):
+    sighting = get_object_or_404(Sighting, unique_squirrel_id=unique_squirrel_id)
+    form = SightingRequestForm(request.POST or None, instance=sighting)
+    context = {
+            'form': form,
+            'latitude':sighting.latitude,
+            'longitude':sighting.longitude,
+            'shift':sighting.shift,
+            'date':sighting.date,
+            'age':sighting.age,
+            }
+    print(context)
+
+    '''
     if form.is_valid():
         sighting = form.save(commit=False)
         sighting.save()
@@ -34,7 +44,8 @@ def update_sighting(request,unique_squirrel_id):             #update the particu
         context = {
             'form': form,
         }
-        return render(request, 'squirrel/update_form.html', context)
+    '''
+    return render(request, 'squirrel/update_form.html', context)
 
 def create_sighting(request):
     if request.method=='POST':
