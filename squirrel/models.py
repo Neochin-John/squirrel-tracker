@@ -14,6 +14,7 @@ class Sighting(models.Model):
 
     unique_squirrel_id = models.CharField(
         max_length=20,
+        unique=True,
         help_text = _('The unique id of squirrel(Format:Hectare-Shift-Date-Hectare Squirrel Number)'),
     )
     
@@ -148,6 +149,10 @@ class Sighting(models.Model):
 
     def __str__(self):
         return self.unique_squirrel_id
+    
+class Meta:
+    managed = True
+    
 
 
 

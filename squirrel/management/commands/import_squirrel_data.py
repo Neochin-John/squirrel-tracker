@@ -15,13 +15,9 @@ class Command(BaseCommand):
         path = kwargs['squirrel_data.csv']
         pattern = re.compile(r'(\d{2})(\d{2})(\d{4})')
 
-        with open(path, 'rt') as fp:
+        with open(path,'rt',encoding='UTF-8') as fp:
             reader = csv.DictReader(fp)
-            id_list=[]
             for item in reader:
-                if item['Unique Squirrel ID'] in id:
-                    continue
-                else:
                     month, day, year = pattern.match(item['Date']).groups()
                     obj = Sighting()
                     obj.longitude = float(item['X'])
@@ -47,9 +43,9 @@ class Command(BaseCommand):
                     obj.approaches = True if item['Approaches'] == 'true' else False
                     obj.indifferent = True if item['Indifferent'] == 'true' else False
                     obj.runs_from = True if item['Runs from'] == 'true' else False
-                    id_list.append(item['Unique Squirrel ID'])
-
-                    obj.save()
                     
-                    msg=f'You are importing from {path}'
-                    self.stdout.write(self.style.SUCCESS(msg))
+                    try:
+                        obj.save()
+                    except Exception as e:
+                        msg=f'ERROR:{e}at{obj.unique_squirrel_id}'
+                        self.stdout.write(self.style.EEROR(msg))
