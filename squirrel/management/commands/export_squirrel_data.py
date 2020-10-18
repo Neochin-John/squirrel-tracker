@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from project.models import Squirrels
+from squirrel.models import Sighting
 import csv
 
 class Command(BaseCommand):
@@ -10,29 +10,31 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         with open(kwargs['path'], 'w', newline='') as csvfile:
-            attributes = ['Latitude',
-                            'Longitude', 
-            		    'Unique Squirrel ID', 
-            		    'Shift', 
-            		    'Date', 
-            		    'Age', 
-            		    'Primary Fur Color', 
-            		    'Location',
-                            'Specific Location',
-                            'Running',
-                            'Chasing',
-                            'Climbing',
-                            'Eating',
-                            'Foraging',
-                            'Other Activities',
-                            'Kuks',
-                            'Quaas',
-                            'Moans',
-                            'Tail Flags',
-                            'Tail Twitches',
-                            'Approaches',
-                            'Indifferent',
-                            'Runs From']
+            attributes = [
+                    'X',
+                    'Y', 
+            	    'Unique Squirrel ID', 
+        	    'Shift', 
+            	    'Date', 
+            	    'Age', 
+            	    'Primary Fur Color', 
+            	    'Location',
+                    'Specific Location',
+                    'Running',
+                    'Chasing',
+                    'Climbing',
+                    'Eating',
+                    'Foraging',
+                    'Other Activities',
+                    'Kuks',
+                    'Quaas',
+                    'Moans',
+                    'Tail flags',
+                    'Tail twitches',
+                    'Approaches',
+                    'Indifferent',
+                    'Runs from'
+            ]
             writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
             writer.writerow(attributes)
             for row in Squirrel.objects.all():
